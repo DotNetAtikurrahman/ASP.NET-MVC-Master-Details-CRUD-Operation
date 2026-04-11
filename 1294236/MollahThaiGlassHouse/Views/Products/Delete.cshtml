@@ -1,0 +1,42 @@
+﻿@model MollahThaiGlassHouse.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+
+<div>
+    <div class="mb-4">
+        <h4 class="fw-bold d-inline-block pb-2" style="color: #003366; border-bottom: 3px solid #ffcc00;">
+            <i class="fa fa-trash me-2"></i>DELETE PRODUCT
+        </h4>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="DELETE NOW" class="btn btn-danger" /> 
+
+        </div>
+        <div class="mt-4">
+            <a href="@Url.Action("Index")" class="btn btn-dark shadow-sm px-4" style="border-left: 4px solid #ffcc00;">
+                <i class="fa fa-arrow-left me-2"></i> Back to Inventory
+            </a>
+        </div>
+    }
+</div>

@@ -1,0 +1,123 @@
+﻿@model MollahThaiGlassHouse.Models.ViewModels.ClientVM
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+
+<div class="row">
+    <div class="col">
+        @using (Html.BeginForm("Delete", "Customers", FormMethod.Post, new { enctype = "multipart/form-data"}))
+        {
+            <div class="row">
+                <div class="col-6 mb-5">
+                    <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center py-3 mb-2" style="border-bottom: 3px solid #ffcc00;">
+                        <h4 class="mb-0 fw-bold"><i class="fa fa-boxes me-2"></i>Are you sure Delete the Customer!!! </h4>
+
+                    </div>
+                    
+                    @Html.HiddenFor(x => x.CustomerId)
+                    @Html.HiddenFor(x => x.Picture)
+
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.CustomerName, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.TextBoxFor(x => x.CustomerName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.PicturFile, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.TextBoxFor(x => x.PicturFile, htmlAttributes: new { @class = "form-control form-control-sm", type = "file" })
+
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.PicturFile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.Address, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.TextBoxFor(x => x.Address, htmlAttributes: new { @class = "form-control form-control-sm" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.Phone, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.TextBoxFor(x => x.Phone, htmlAttributes: new { @class = "form-control form-control-sm" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.PurchaseDate, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.TextBoxFor(x => x.PurchaseDate, "{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control form-control-sm", type = "date" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.PurchaseDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @Html.LabelFor(x => x.IsPaid, htmlAttributes: new { @class = "col-form-label col-form-label-sm col-2" })
+                        <div class="col-8">
+                            @Html.CheckBoxFor(x => x.IsPaid)
+
+                        </div>
+                        <div class="col-2">
+                            @Html.ValidationMessageFor(x => x.IsPaid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-2">
+                        <div class="col-10 offset-2">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-5">
+
+                    <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center py-3 mb-2" style="border-bottom: 3px solid #ffcc00;">
+                        <h4 class="mb-0 fw-bold"><i class="fa fa-boxes me-2"></i>Delete Product Form List!!! </h4>
+
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-end ">
+                        <a id="btnPlus" class="btn btn-primary mb-2"><i class="fa fa-plus"></i> Add More Products  </a>
+                    </div>
+
+                    <div id="spotContainer">
+                        @foreach (var item in Model.ProductList)
+                        {
+                            @Html.Action("AddNewProduct", "Customers", new { id = item })
+
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div id="msg"></div>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+
+
+

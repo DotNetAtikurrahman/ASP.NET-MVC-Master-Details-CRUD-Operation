@@ -1,0 +1,110 @@
+﻿@model IEnumerable<MollahThaiGlassHouse.Models.Customer> 
+
+
+<div class="container-fluid py-4">
+    <div class="card shadow-sm border-0 mb-5" style="border-radius: 12px; overflow: hidden;">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3" style="border-bottom: 4px solid #ffcc00;">
+            <h4 class="mb-0 fw-bold"><i class="fa fa-users-cog me-2"></i> Customer Management</h4>
+            <a href="@Url.Action("Create","Customers")" class="btn btn-warning btn-sm fw-bold px-3">
+                <i class="fa fa-plus-circle me-1"></i> Add New Customer
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow-sm hover-shadow transition-all" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-4 border-end bg-light p-4" style="border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+                                <div class="text-center mb-3">
+                                    <img src="@item.Picture" alt="Customer" 
+                                         class="rounded-circle border border-3 border-white shadow-sm mb-2" 
+                                         style="height: 80px; width: 80px; object-fit: cover;" />
+                                    <h5 class="fw-bold mb-0 text-dark">@item.CustomerName</h5>
+                                    <span class="badge @(item.IsPaid ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger") border rounded-pill px-3">
+                                        <i class="fa @(item.IsPaid ? "fa-check-circle" : "fa-clock") me-1"></i> 
+                                        @(item.IsPaid ? "Paid" : "Pending")
+                                    </span>
+                                </div>
+                                
+                                <div class="small text-muted">
+                                    <div class="mb-2"><i class="fa fa-map-marker-alt me-2 text-primary"></i> @item.Address</div>
+                                    <div class="mb-2"><i class="fa fa-phone me-2 text-primary"></i> @item.Phone</div>
+                                    <div class="mb-0"><i class="fa fa-calendar-alt me-2 text-primary"></i> Purchased: @item.PurchaseDate.ToString("MMM dd, yyyy")</div>
+                                </div>
+
+                                <div class="mt-4 d-flex gap-2">
+                                    <a class="btn btn-outline-primary btn-sm flex-fill fw-bold" href="@Url.Action("Edit", "Customers", new { id = item.CustomerId })">
+                                        <i class="fa fa-edit me-1"></i> Edit
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm flex-fill fw-bold" href="@Url.Action("Delete", "Customers", new { id = item.CustomerId })">
+                                        <i class="fa fa-trash me-1"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 p-4">
+                                <h6 class="fw-bold text-secondary mb-3 text-uppercase small" style="letter-spacing: 1px;">
+                                    <i class="fa fa-shopping-cart me-2"></i> Purchased Products
+                                </h6>
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="bg-white">
+                                            <tr class="text-muted small">
+                                                <th style="width: 80px;">ID</th>
+                                                <th>Product Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var i in item.TransactionDetails)
+                                            {
+                                                <tr>
+                                                    <td><span class="badge bg-light text-dark border">#@i.Product.ProductId</span></td>
+                                                    <td class="fw-semibold text-dark">@i.Product.ProductName</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        /* Google-Style Refinements */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .hover-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,.1) !important;
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        .bg-success-subtle { background-color: #e6f4ea; }
+        .bg-danger-subtle { background-color: #fce8e6; }
+
+        .table > :not(caption) > * > * {
+            padding: 0.75rem 0;
+            border-bottom-color: #f1f3f4;
+        }
+
+        .btn-sm {
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+    </style>
+}

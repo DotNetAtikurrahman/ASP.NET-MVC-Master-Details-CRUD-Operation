@@ -1,0 +1,12 @@
+﻿@model MollahThaiGlassHouse.Models.Product
+
+<div class="row mb-2">
+    <div class="col-8">
+        @Html.DropDownListFor(x => x.ProductId, ViewBag.Products as SelectList, "---------------Select Products------------", htmlAttributes: new { @class = "form-select form-select-sm mb-2" })
+    </div>
+    <div class="col-4">
+        <a id="btnDelete" class="btn btn-danger "><i class="fa fa-trash"></i> Remove </a>
+    </div>
+
+
+</div>

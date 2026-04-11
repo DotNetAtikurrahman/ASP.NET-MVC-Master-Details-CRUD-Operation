@@ -1,0 +1,148 @@
+﻿@model MollahThaiGlassHouse.Models.ViewModels.ClientVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "msg",
+    OnComplete = "clearAll"
+}))
+{
+    <div class="card shadow-lg border-0" style="border-radius: 15px;">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3" style="border-bottom: 4px solid #ffcc00; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <h4 class="mb-0 fw-bold"><i class="fa fa-user-plus me-2 text-warning"></i> Customer Enrollment</h4>
+            <a href="@Url.Action("Index","Customers")" class="btn btn-outline-light btn-sm">
+                <i class="fa fa-list me-1"></i> Back to List
+            </a>
+        </div>
+
+        <div class="card-body p-4 p-lg-5">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h5 class="text-primary mb-4 border-bottom pb-2 fw-bold">
+                        <i class="fa fa-id-card me-2"></i>Personal Details
+                    </h5>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Customer Full Name</label>
+                        <div class="input-group shadow-sm">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-user text-muted"></i></span>
+                            @Html.TextBoxFor(x => x.CustomerName, htmlAttributes: new { @class = "form-control border-start-0", placeholder = "Enter name..." })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Upload Photo</label>
+                        @Html.TextBoxFor(x => x.PicturFile, htmlAttributes: new { @class = "form-control shadow-sm", type = "file" })
+                        @Html.ValidationMessageFor(x => x.PicturFile, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Full Address</label>
+                        <div class="input-group shadow-sm">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-map-marker-alt text-muted"></i></span>
+                            @Html.TextBoxFor(x => x.Address, htmlAttributes: new { @class = "form-control border-start-0", placeholder = "Village, Union, Post Office..." })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold small">Phone Number</label>
+                            @Html.TextBoxFor(x => x.Phone, htmlAttributes: new { @class = "form-control shadow-sm", placeholder = "017..." })
+                            @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold small">Purchase Date</label>
+                            @Html.TextBoxFor(x => x.PurchaseDate, htmlAttributes: new { @class = "form-control shadow-sm", type = "date" })
+                            @Html.ValidationMessageFor(x => x.PurchaseDate, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="form-check form-switch mt-3 p-3 bg-light rounded shadow-sm border">
+                        @Html.CheckBoxFor(x => x.IsPaid, new { @class = "form-check-input ms-0", id = "paidSwitch" })
+                        <label class="form-check-label fw-bold ms-2" for="paidSwitch">Payment Completed</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                        <h5 class="text-primary mb-0 fw-bold"><i class="fa fa-shopping-basket me-2"></i>Order Items</h5>
+                        <a id="btnPlus" class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm">
+                            <i class="fa fa-plus me-1"></i> Add More
+                        </a>
+                    </div>
+
+                    <div id="spotContainer" class="p-3 bg-light rounded-3 border" style="min-height: 300px;">
+                        @Html.Action("AddNewProduct", "Customers")
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 border-top pt-4">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-dark btn-lg px-5 shadow" style="background-color: #003366; border: none;">
+                        <i class="fa fa-save me-2 text-warning"></i> SAVE CUSTOMER RECORD
+                    </button>
+                </div>
+            </div>
+
+            <div id="msg" class="mt-4"></div>
+        </div>
+    </div>
+}
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $("#form0").attr("enctype", "multipart/form-data")
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+
+
+
+
+    </script>
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .form-control:focus {
+            border-color: #003366;
+            box-shadow: 0 0 0 0.25rem rgba(0, 51, 102, 0.1);
+        }
+
+        .input-group-text {
+            border-right: none;
+        }
+
+        .form-label {
+            color: #495057;
+        }
+
+        .text-primary {
+            color: #003366 !important;
+        }
+
+        .card-header {
+            background-color: #1a1a1a !important;
+        }
+    </style>
+
+
+}
+
+
+
+

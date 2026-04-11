@@ -1,0 +1,71 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 500px;
+}
+/* Ensure all images are the same height and sharp */
+.slider-img {
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.8); /* Dims image slightly so text is easier to read */
+}
+
+/* Custom Text Overlay */
+.custom-caption {
+    bottom: 25%;
+    left: 8%;
+    background: rgba(0, 51, 102, 0.7); /* Your Navy Blue brand color with transparency */
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 450px;
+    border-left: 5px solid #ffcc00; /* Gold Brand Accent */
+}
+
+/* Round Controls < > */
+.control-circle {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: 0.3s;
+    text-align: center;
+    color: white;
+}
+
+    .control-circle:hover {
+        background-color: #ffcc00;
+        color: #003366;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slider-img {
+        height: 300px;
+    }
+
+    .custom-caption {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: 100%;
+        border-radius: 0;
+        text-align: center !important;
+    }
+}

@@ -1,0 +1,35 @@
+CREATE DATABASE MollahThaiGlassHouse
+GO
+USE MollahThaiGlassHouse
+GO
+
+CREATE TABLE Products(
+
+ProductId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+ProductName NVARCHAR(80) NOT NULL
+
+)
+GO
+
+CREATE TABLE Customers(
+
+CustomerId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CustomerName NVARCHAR(50) NOT NULL,
+Picture NVARCHAR(MAX),
+Address NVARCHAR(250) NOT NULL,
+Phone NVARCHAR(50) NOT NULL,
+PurchaseDate DATE NOT NULL DEFAULT GETDATE(),
+IsPaid BIT 
+
+)
+GO
+
+CREATE TABLE TransactionDetail(
+
+TransactionId INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CustomerId INT NOT NULL REFERENCES Customers(CustomerId),
+ProductId INT NOT NULL REFERENCES Products(ProductId),
+
+)
+SELECT * FROM Products
+SELECT * FROM Customers
