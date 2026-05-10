@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛒 ASP.NET Core MVC — Code-First & Role-Based Auth
+# 🛒 ASP.NET MVC — Code-First & Role-Based Auth
 
 <p align="center">
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" />
@@ -324,6 +324,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full details
 
 <div align="center">
 
-Made with ❤️ using **ASP.NET Core 10**
+Made with ❤️ using **ASP.NET MVC 10**
 
 </div>
